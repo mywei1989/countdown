@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>计时控件示例_浏览器版</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+</head>
+
+<style>
+#time_bx div{
+    float:left;
+}
+
+#time_bx2 div{
+    float:left;
+}
+</style>
+
+<body>
+<div id="time_bx">
+    <div class="dash hours_dash">
+        <div class="digit">0</div>
+        <div class="digit">0</div>
+    </div>
+    <div>:</div>
+    <div class="dash minutes_dash">
+        <div class="digit">2</div>
+        <div class="digit">4</div>
+    </div>
+    <div>:</div>
+    <div class="dash seconds_dash">
+        <div class="digit">3</div>
+        <div class="digit">9</div>
+    </div>
+</div>
+<br />
+<div id="time_bx2">
+    <div class="dash hours_dash">
+        <div class="digit">0</div>
+        <div class="digit">0</div>
+    </div>
+    <div>:</div>
+    <div class="dash minutes_dash">
+        <div class="digit">2</div>
+        <div class="digit">4</div>
+    </div>
+    <div>:</div>
+    <div class="dash seconds_dash">
+        <div class="digit">3</div>
+        <div class="digit">9</div>
+    </div>
+</div>
+
+
+
+    <script type="text/javascript" src="../dist/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../dist/countdown.min.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            var second=5;
+            var date20before=new Date();
+            date20before.setSeconds(date20before.getSeconds()+second);
+            $('#time_bx').countDown({
+                targetDate: {
+                    'year': date20before.getFullYear(),
+                    'month': date20before.getMonth() + 1,
+                    'day': date20before.getDate(),
+                    'hour': date20before.getHours(),
+                    'min': date20before.getMinutes(),
+                    'sec': date20before.getSeconds()
+                },
+                onTicktock: function(diffSec){
+                    console.log('#time_bx onTicktock:'+diffSec);    //console diff second;
+                },
+                onComplete: function () {
+                    console.log('#time_bx onComplete,and stop #time_bx2 countdown');
+                    $('#time_bx2').stopCountDown();
+                }
+            });
+
+
+            var second2=10;
+            var date20before2=new Date();
+            date20before2.setSeconds(date20before2.getSeconds()+second2);
+            $('#time_bx2').countDown({
+                targetDate: {
+                    'year': date20before2.getFullYear(),
+                    'month': date20before2.getMonth() + 1,
+                    'day': date20before2.getDate(),
+                    'hour': date20before2.getHours(),
+                    'min': date20before2.getMinutes(),
+                    'sec': date20before2.getSeconds()
+                },
+                onTicktock: function(diffSec){
+                    console.log('#time_bx2 onTicktock:'+diffSec);    //console diff second;
+                },
+                onComplete: function () {
+                    console.log('#time_bx2 onComplete!');
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
